@@ -2,9 +2,9 @@
   "name": "node-pixiv",
   "version": "0.0.0",
   "description": "Node wrapper for Pixiv API.",
-  "main": "index.js",
+  "main": "./lib/index",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha --compilers coffee:coffee-script/register"
   },
   "repository": {
     "type": "git",
@@ -19,5 +19,15 @@
   "bugs": {
     "url": "https://github.com/MisumiRize/node-pixiv/issues"
   },
-  "homepage": "https://github.com/MisumiRize/node-pixiv"
+  "homepage": "https://github.com/MisumiRize/node-pixiv",
+  "dependencies": {
+    "coffee-script": ">=1.7.1",
+    "csv": ">=0.3.7",
+    "request": ">=2.34.0"
+  },
+  "devDependencies": {
+    "chai": ">=1.9.1",
+    "mocha": ">=1.18.2",
+    "sinon": ">=1.9.1"
+  }
 }
