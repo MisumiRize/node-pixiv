@@ -1,0 +1,23 @@
+{
+  "name": "node-pixiv",
+  "version": "0.0.0",
+  "description": "Node wrapper for Pixiv API.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:MisumiRize/node-pixiv.git"
+  },
+  "keywords": [
+    "pixiv",
+    "api"
+  ],
+  "author": "Rize MISUMI",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MisumiRize/node-pixiv/issues"
+  },
+  "homepage": "https://github.com/MisumiRize/node-pixiv"
+}
