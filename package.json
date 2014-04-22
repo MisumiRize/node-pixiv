@@ -4,7 +4,9 @@
   "description": "Node wrapper for Pixiv API.",
   "main": "./lib/index",
   "scripts": {
-    "test": "mocha --compilers coffee:coffee-script/register"
+    "prepublish": "node_modules/coffee-script/bin/coffee --bare --compile --output lib/ src/*.coffee",
+    "postinstall": "node_modules/coffee-script/bin/coffee --bare --compile --output lib/ src/*.coffee",
+    "test": "mocha --compilers coffee:coffee-script/register --require test/helper.coffee --no-colors"
   },
   "repository": {
     "type": "git",
@@ -23,6 +25,7 @@
   "dependencies": {
     "coffee-script": ">=1.7.1",
     "csv": ">=0.3.7",
+    "extend": ">=1.2.1",
     "request": ">=2.34.0"
   },
   "devDependencies": {

@@ -9,7 +9,9 @@ describe 'search', ->
   after ->
     stub.restore()
 
-  it 'should fetch CSV data', ->
+  it 'should invoke callback function with CSV data and GET parameters', ->
     stub.returns fs.createReadStream("#{__dirname}/search.csv")
-    pixiv.search 'search word', (data) ->
+    pixiv.search 'search word', (data, params) ->
       expect(data[0][2]).to.be.equal 'success'
+      expect(params.p).to.be.equal 1
+      expect(params.word).to.be.equal 'search word'
