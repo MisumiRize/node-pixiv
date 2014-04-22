@@ -1,6 +1,6 @@
 request = require 'request'
 csv = require 'csv'
-extend = require 'extend'
+_ = require 'lodash'
 
 params = {
   s_mode: 's_tag'
@@ -12,7 +12,7 @@ params = {
 search = (options, cb) ->
   if typeof options == 'string' or options instanceof String
     options = { word: options }
-  qs = extend params, options
+  qs = _.extend _.clone(params), options
   csv().from(
     request.get({
       url: 'http://spapi.pixiv.net/iphone/search.php',
@@ -21,4 +21,12 @@ search = (options, cb) ->
   ).to.array (data) ->
     cb.call @, data, qs
 
-module.exports.search = search
+next = (qs) ->
+  next = _.clone qs
+  next.p += 1
+  next
+
+module.exports = {
+  search: search,
+  next: next
+}

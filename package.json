@@ -25,7 +25,7 @@
   "dependencies": {
     "coffee-script": ">=1.7.1",
     "csv": ">=0.3.7",
-    "extend": ">=1.2.1",
+    "lodash": "~2.4.1",
     "request": ">=2.34.0"
   },
   "devDependencies": {

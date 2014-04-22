@@ -15,3 +15,10 @@ describe 'search', ->
       expect(data[0][2]).to.be.equal 'success'
       expect(params.p).to.be.equal 1
       expect(params.word).to.be.equal 'search word'
+
+describe 'next', ->
+  it 'should return params for next page but should not break given params', ->
+    previous = {p: 1}
+    next = pixiv.next previous
+    expect(previous.p).to.be.equal 1
+    expect(next.p).to.be.equal 2
