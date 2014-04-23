@@ -9,6 +9,39 @@ params = {
   p: 1
 }
 
+columns = [
+  'illust_id',
+  'user_id',
+  'extension',
+  'title',
+  'server_number',
+  'user_fullname',
+  'illust_128_url',
+  'x1',
+  'x2',
+  'illust_480mw_url',
+  'x3',
+  'x4',
+  'created_at',
+  'tags',
+  'tool',
+  'evaluations',
+  'evaluation_point',
+  'views',
+  'caption',
+  'pages',
+  'x5',
+  'x6',
+  'x7',
+  'x8',
+  'user_name',
+  'x9',
+  'r18',
+  'x10',
+  'x11',
+  'avatar_url',
+]
+
 search = (options, cb) ->
   if typeof options == 'string' or options instanceof String
     options = { word: options }
@@ -18,8 +51,8 @@ search = (options, cb) ->
       url: 'http://spapi.pixiv.net/iphone/search.php',
       qs: qs
     })
-  ).to.array (data) ->
-    cb.call @, data, qs
+  ).to.options { columns: columns }
+  .to.array (data) -> cb.call @, data, qs,
 
 next = (qs) ->
   next = _.clone qs
