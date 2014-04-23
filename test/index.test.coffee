@@ -1,20 +1,42 @@
 pixiv = require '../src/index'
 request = require 'request'
-stub = null
+mock = null
+
+before ->
+  mock = sinon.mock request
+
+after ->
+  mock.restore()
 
 describe 'search', ->
-  before ->
-    stub = sinon.stub request, 'get'
-
-  after ->
-    stub.restore()
-
   it 'should invoke callback function with CSV data and GET parameters', ->
-    stub.returns fs.createReadStream("#{__dirname}/search.csv")
+    mock.expects('get')
+    .withExactArgs({
+      url: 'http://spapi.pixiv.net/iphone/search.php'
+      qs: {
+        s_mode: 's_tag'
+        order: 'date'
+        PHPSESSID: 0
+        p: 1
+        word: 'search word'
+      }
+    }).returns fs.createReadStream("#{__dirname}/search.csv")
     pixiv.search 'search word', (data, params) ->
       expect(data[0].extension).to.be.equal 'success'
-      expect(params.p).to.be.equal 1
-      expect(params.word).to.be.equal 'search word'
+
+describe 'ranking', ->
+  it 'should invoke callback function with CSV data and GET parameters', ->
+    mock.expects('get')
+    .withExactArgs({
+      url: 'http://spapi.pixiv.net/iphone/ranking.php'
+      qs: {
+        mode: 'day'
+        PHPSESSID: 0
+        p: 1
+      }
+    }).returns fs.createReadStream("#{__dirname}/search.csv")
+    pixiv.ranking 'day', (data, params) ->
+      expect(data[0].extension).to.be.equal 'success'
 
 describe 'next', ->
   it 'should return params for next page but should not break given params', ->

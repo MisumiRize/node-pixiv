@@ -3,8 +3,6 @@ csv = require 'csv'
 _ = require 'lodash'
 
 params = {
-  s_mode: 's_tag'
-  order: 'date'
   PHPSESSID: 0
   p: 1
 }
@@ -43,15 +41,23 @@ columns = [
 ]
 
 search = (options, cb) ->
+  qs = {
+    s_mode: 's_tag'
+    order: 'date'
+  }
   if typeof options == 'string' or options instanceof String
     options = { word: options }
+  talk 'http://spapi.pixiv.net/iphone/search.php', _.extend(qs, options), cb
+
+ranking = (options, cb) ->
+  if typeof options == 'string' or options instanceof String
+    options = { mode: options }
+  talk 'http://spapi.pixiv.net/iphone/ranking.php', options, cb
+
+talk = (url, options, cb) ->
   qs = _.extend _.clone(params), options
-  csv().from(
-    request.get({
-      url: 'http://spapi.pixiv.net/iphone/search.php',
-      qs: qs
-    })
-  ).to.options { columns: columns }
+  csv().from request.get({ url: url, qs: qs })
+  .to.options { columns: columns }
   .to.array (data) -> cb.call @, data, qs,
 
 next = (qs) ->
@@ -60,6 +66,7 @@ next = (qs) ->
   next
 
 module.exports = {
-  search: search,
+  search: search
+  ranking: ranking
   next: next
 }
