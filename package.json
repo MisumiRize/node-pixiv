@@ -1,7 +1,7 @@
 {
-  "name": "node-pixiv",
-  "version": "0.0.0",
-  "description": "Node wrapper for Pixiv API.",
+  "name": "pixiv",
+  "version": "0.0.1",
+  "description": "Node.js library for Pixiv API",
   "main": "./lib/index",
   "scripts": {
     "prepublish": "node_modules/coffee-script/bin/coffee --bare --compile --output lib/ src/*.coffee",
