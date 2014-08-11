@@ -4,9 +4,7 @@
   "description": "Node.js library for Pixiv API",
   "main": "./lib/index",
   "scripts": {
-    "prepublish": "node_modules/coffee-script/bin/coffee --bare --compile --output lib/ src/*.coffee",
-    "postinstall": "node_modules/coffee-script/bin/coffee --bare --compile --output lib/ src/*.coffee",
-    "test": "mocha --compilers coffee:coffee-script/register --require test/helper.coffee --no-colors"
+    "test": "node_modules/.bin/gulp test"
   },
   "repository": {
     "type": "git",

@@ -1,12 +1,12 @@
-gulp = require "gulp"
-{coffee, mocha} = do require "gulp-load-plugins"
+gulp = require 'gulp'
+{coffee, mocha} = do require 'gulp-load-plugins'
 
-gulp.task "compile", ->
-  gulp.src "./src/*.coffee"
+gulp.task 'compile', ->
+  gulp.src './src/*.coffee'
     .pipe do coffee
-    .pipe gulp.dest "./"
+    .pipe gulp.dest './lib'
 
-gulp.task "test", ->
-  require "./test/helper"
-  gulp.src "./test/*.test.coffee"
+gulp.task 'test', ->
+  require './test/helper'
+  gulp.src './test/*.test.coffee'
     .pipe do mocha
