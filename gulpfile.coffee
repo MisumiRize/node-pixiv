@@ -10,3 +10,5 @@ gulp.task 'test', ->
   require './test/helper'
   gulp.src './test/*.test.coffee'
     .pipe do mocha
+
+gulp.task 'default', ['compile', 'test']

@@ -55,10 +55,16 @@ ranking = (options, cb) ->
   talk 'http://spapi.pixiv.net/iphone/ranking.php', options, cb
 
 talk = (url, options, cb) ->
+  parser = csv.parse columns: columns
+  records = []
   qs = _.extend _.clone(params), options
-  csv().from request.get({ url: url, qs: qs })
-  .to.options { columns: columns }
-  .to.array (data) -> cb.call @, data, qs,
+  parser.on 'readable', ->
+    while record = parser.read()
+      records.push record
+  parser.on 'end', ->
+    cb records, qs
+  request.get url: url, qs: qs
+    .pipe parser
 
 next = (qs) ->
   next = _.clone qs

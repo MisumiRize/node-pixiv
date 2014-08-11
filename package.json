@@ -21,18 +21,17 @@
   },
   "homepage": "https://github.com/MisumiRize/node-pixiv",
   "dependencies": {
-    "coffee-script": ">=1.7.1",
-    "csv": "~0.3.7",
+    "csv": "~0.4.0",
     "lodash": "~2.4.1",
-    "request": ">=2.34.0"
+    "request": ">=2.40.0"
   },
   "devDependencies": {
-    "chai": ">=1.9.1",
-    "gulp": "^3.8.7",
-    "gulp-coffee": "^2.1.1",
-    "gulp-load-plugins": "^0.5.3",
-    "gulp-mocha": "^0.5.2",
-    "mocha": ">=1.18.2",
-    "sinon": ">=1.9.1"
+    "chai": "latest",
+    "coffee-script": "latest",
+    "gulp": "latest",
+    "gulp-coffee": "latest",
+    "gulp-load-plugins": "latest",
+    "gulp-mocha": "latest",
+    "sinon": "latest"
   }
 }
