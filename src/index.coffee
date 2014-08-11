@@ -2,10 +2,9 @@ request = require 'request'
 csv = require 'csv'
 _ = require 'lodash'
 
-params = {
+params =
   PHPSESSID: 0
   p: 1
-}
 
 columns = [
   'illust_id',
@@ -41,17 +40,14 @@ columns = [
 ]
 
 search = (options, cb) ->
-  qs = {
+  qs =
     s_mode: 's_tag'
     order: 'date'
-  }
-  if typeof options == 'string' or options instanceof String
-    options = { word: options }
+  options = word: options if _.isString options
   talk 'http://spapi.pixiv.net/iphone/search.php', _.extend(qs, options), cb
 
 ranking = (options, cb) ->
-  if typeof options == 'string' or options instanceof String
-    options = { mode: options }
+  options = mode: options if _.isString options
   talk 'http://spapi.pixiv.net/iphone/ranking.php', options, cb
 
 talk = (url, options, cb) ->
