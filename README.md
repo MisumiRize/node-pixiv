@@ -1,4 +1,4 @@
-node-pixiv [![Build Status](https://travis-ci.org/MisumiRize/node-pixiv.svg?branch=master)](https://travis-ci.org/MisumiRize/node-pixiv)
+node-pixiv [![Build Status](https://travis-ci.org/MisumiRize/node-pixiv.svg?branch=master)](https://travis-ci.org/MisumiRize/node-pixiv) [![Dependency Status](https://david-dm.org/MisumiRize/node-pixiv.svg)](https://david-dm.org/MisumiRize/node-pixiv)
 ==========
 node-pixiv is Pixiv API client library written in Node.js.
 
