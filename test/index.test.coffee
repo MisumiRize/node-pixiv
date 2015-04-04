@@ -1,5 +1,9 @@
+{expect} = require 'chai'
+sinon = require 'sinon'
+fs = require 'fs'
 pixiv = require '../src/index'
 request = require 'request'
+
 mock = null
 
 before ->

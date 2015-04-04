@@ -4,7 +4,7 @@
   "description": "Node.js library for Pixiv API",
   "main": "./lib/index",
   "scripts": {
-    "test": "node_modules/.bin/gulp test"
+    "test": "mocha --compilers coffee:coffee-script/register test/**/*.coffee"
   },
   "repository": {
     "type": "git",
@@ -26,12 +26,9 @@
     "request": "^2.53.0"
   },
   "devDependencies": {
-    "chai": "latest",
-    "coffee-script": "latest",
-    "gulp": "latest",
-    "gulp-coffee": "latest",
-    "gulp-load-plugins": "latest",
-    "gulp-mocha": "latest",
-    "sinon": "latest"
+    "chai": "^2.2.0",
+    "coffee-script": "^1.9.1",
+    "mocha": "^2.2.1",
+    "sinon": "^1.14.1"
   }
 }
