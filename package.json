@@ -4,7 +4,8 @@
   "description": "Node.js library for Pixiv API",
   "main": "./lib/index",
   "scripts": {
-    "test": "mocha --compilers coffee:coffee-script/register test/**/*.coffee"
+    "test": "mocha --compilers coffee:coffee-script/register test/**/*.coffee",
+    "prepublish": "coffee -o lib -c src"
   },
   "repository": {
     "type": "git",
@@ -21,14 +22,14 @@
   },
   "homepage": "https://github.com/MisumiRize/node-pixiv",
   "dependencies": {
-    "csv": "^0.4.1",
+    "bluebird": "^2.9.24",
+    "csv-parse": "^0.1.0",
     "lodash": "^3.2.0",
-    "request": "^2.53.0"
+    "superagent": "^1.1.0"
   },
   "devDependencies": {
     "chai": "^2.2.0",
     "coffee-script": "^1.9.1",
-    "mocha": "^2.2.1",
-    "sinon": "^1.14.1"
+    "mocha": "^2.2.1"
   }
 }

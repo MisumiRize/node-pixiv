@@ -1,12 +1,9 @@
-request = require 'request'
-csv = require 'csv'
-_ = require 'lodash'
+Promise = require 'bluebird'
+request = require 'superagent'
+csvParse = require 'csv-parse'
+merge = require 'lodash/object/merge'
 
-params =
-  PHPSESSID: 0
-  p: 1
-
-columns = [
+COLUMNS = [
   'illust_id',
   'user_id',
   'extension',
@@ -37,38 +34,41 @@ columns = [
   'x10',
   'x11',
   'avatar_url',
+  'x12',
 ]
 
-search = (options, cb) ->
-  qs =
-    s_mode: 's_tag'
-    order: 'date'
-  options = word: options if _.isString options
-  talk 'http://spapi.pixiv.net/iphone/search.php', _.extend(qs, options), cb
+search = (word, params = {}) ->
+  params = merge
+      s_mode: 's_tag'
+      order: 'date'
+      word: word
+    , params
+  talk 'http://spapi.pixiv.net/iphone/search.php', params
 
-ranking = (options, cb) ->
-  options = mode: options if _.isString options
-  talk 'http://spapi.pixiv.net/iphone/ranking.php', options, cb
+ranking = (mode, params = {}) ->
+  params = merge
+      mode: mode
+    , params
+  talk 'http://spapi.pixiv.net/iphone/ranking.php', params
 
-talk = (url, options, cb) ->
-  parser = csv.parse columns: columns
-  records = []
-  qs = _.extend _.clone(params), options
-  parser.on 'readable', ->
-    while record = parser.read()
-      records.push record
-  parser.on 'end', ->
-    cb records, qs
-  request.get url: url, qs: qs
-    .pipe parser
+talk = (url, params) ->
+  query = merge
+      PHPSESSID: 0
+      p: 1
+    , params
+  new Promise (resolve, reject) ->
+      request
+        .get url
+        .query query
+        .end (err, res) ->
+          if err then reject err else resolve res
+    .then parse
 
-next = (qs) ->
-  next = _.clone qs
-  next.p += 1
-  next
+parse = (res) ->
+  new Promise (resolve, reject) ->
+    csvParse res.text, columns: COLUMNS, (err, data) ->
+      if err then reject err else resolve data
 
-module.exports = {
+module.exports =
   search: search
   ranking: ranking
-  next: next
-}
