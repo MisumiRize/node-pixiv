@@ -1,6 +1,6 @@
 {
   "name": "pixiv",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "description": "Node.js library for Pixiv API",
   "main": "lib/index.js",
   "files": [
