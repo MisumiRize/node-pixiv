@@ -2,7 +2,10 @@
   "name": "pixiv",
   "version": "0.0.4",
   "description": "Node.js library for Pixiv API",
-  "main": "./lib/index",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
   "scripts": {
     "test": "mocha --compilers coffee:coffee-script/register test/**/*.coffee",
     "prepublish": "coffee -o lib -c src"
